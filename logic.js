@@ -140,7 +140,7 @@ setInterval(() => {
             ;
         })
     })
-}, 20000)
+}, 5000)
 
 //move the messages to the trash if there are any IDs in the msgIdArray
 function trashMe(msgIds, ctn) {
@@ -188,21 +188,20 @@ let sendTrigger = function(whoSent, ctn, msgIds, overShare, sendResume) {
     `;
 	} else {
 	leCannedMessage = `
-        <body style="background-color:#121d21;text-align:center">         <h1 style="font-size:5em;">🤖</h1>
+        <body style="background-color:#121d21;text-align:center">         <h1 style="font-size:2em;">🤖</h1>
         <p style="font-family:'Monospace';color:gray;font-size:.9em;">  Beep, boop, hi!  </p>
                                                                           <p style="font-family:'Monospace';color:#f7c45f;font-size:
 1.4em;">                                                                  I got your message, and I should check it soon! BTW - this
- email is automated and interactive.                                      To get a summary of my recent work and mission, type "about you" anywhere in your next message. </p>                                <br>								 <p style="font-family:'Monospace';color:#f7c45f;font-size:1.4em;">Type "resume please" anywhere in your next email to receive a copy of my resume</p>
-									  <br>
+ email is automated and interactive.                                      To get a summary of my recent work and mission, type "about you" anywhere in your next message. </p> 						 <p style="font-family:'Monospace';color:#f7c45f;font-size:1.4em;">Type "resume please" anywhere in your next email to receive a copy of my resume</p>
+									  
 	<p style="font-family:'Monospace';color:#f7c45f;font-size:1.4em;">								  
-You will continue to receive this message until I respond.        Or if you'd like, you can silence Xio and flag your next message as high priority
-        by typing "thanks Xio" anywhere in your next email.               </p>
+To stop these messages and email me directly type "thanks Xio" anywhere in your next email.               </p>
         <p style="display:inline;background-color:#F26A4B;padding:.3em;border-radius:10px;">
         Sent by Chase via a robot named Xio                                                    </p>
         <p style="font-family:'Monospace';color:gray;font-size:.9e
 m;">                                                                      Beep, boop, bye!                                                  </p>
         <p style="font-family:'Monospace';color:#f23d3d;font-size:
-1.1em;">Review my portfolio here:<br>                              https://cheidebur.github.io/portfolio                             </p>          
+1.1em;">Review my portfolio here:                              https://cheidebur.github.io/portfolio                             </p>          
 	</body>
         `;
 	};
