@@ -1,6 +1,6 @@
 # Xio
 
-### Xio is an email bot written with imap-simple.
+### Xio is an email bot written in Node with imap-simple.
 
 I'll go over
 - what Xio does
