@@ -21,7 +21,9 @@ The email sender can include the term __resume please__ anywhere in their email,
 will respond with a link to my resume. Theorhetically this could be used for anything, and the commands
 could be changed to whatever. 
 
-__Thanks Xio__ will add the sender's email to a blacklist and move their message to your Direct inbox.
+__Thanks Xio__ will add the sender's email to a blacklist and move their message to your Direct inbox. This
+has the added benefit of also moving their last message to your inbox so it doesn't get lost in the filtered
+folder (currently called TRASH but that's a misnomer).
 
 ## design challenges
 
