@@ -145,7 +145,7 @@ setInterval(() => {
                 }
                 else {
                     console.log(mailSender, " is blacklisted - not sending anything and moving the message to DMs");
-                    ctn.moveMessage(theMsgIdArray, "DIRECT", function () {
+                    boxConnection.moveMessage(theMsgIdArray, "DIRECT", function () {
                         console.log("messages moved to direct");
                     }).catch(err => {
                         console.log(err);
