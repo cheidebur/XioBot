@@ -8,7 +8,7 @@ I'll go over
 
 
 ## what does Xio do?
-Xio checks, sorts, and responds to your email and based on the email's contents. With Xio, all mail received
+Xio checks, sorts, and responds to your email based on the email's contents. With Xio, all mail received
 goes into a filtered folder, and it is only moved into the "Direct" folder if the sender flags it as important
 by including a command in their email.
 
