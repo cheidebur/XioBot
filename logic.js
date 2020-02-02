@@ -8,7 +8,7 @@ console.log(`
 -----Welcome to  Xio----
 -🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖-
 `);
-
+//mobile cmt
 let newMsg;
 let blackList = fs.readFileSync('xiodb.json', function (err, data) {
     if (err) throw err;
