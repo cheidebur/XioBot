@@ -87,22 +87,38 @@ setInterval(() => {
     mailCtn().then(boxConnection => {
         boxConnection.openBox('INBOX').then(async function () {
 
-            const searchCriteria = ['UNSEEN'];
             const fetchOptions = {
                 bodies: [
                     'HEADER', 'TEXT'
                 ],
                 markSeen: true
             };
+            const searchCriteria = ['ANSWERED'];
+
+            /*
+            //trash the remaining emails in the inbox for whatever reason if theyre there
+            const emailsInBox = await boxConnection.search(searchCriteria, fetchOptions);
+
+            if (emailsInBox.length > 0) {
+                let emailsInBoxUids = emailsInBox.map(email => {
+                    return email.attributes.uid;
+                })
+                return trashMe(emailsInBoxUids, boxConnection);
+            } else {
+                console.log("No answered emails in inbox");
+            }
+            */
             // search for  UNSEEN emails
-            const results = await boxConnection.search(searchCriteria, fetchOptions);
+            const searchCriteria2 = ['UNSEEN'];
+            const results = await boxConnection.search(searchCriteria2, fetchOptions);
 
             if (results.length > 0) {
                 console.log("You've got something in your mailbox.");
                 newMsg = false;
             }
             else {
-                boxConnection.end();
+                console.log("You've got nothing in your mailbox");
+                return boxConnection.end();
             }
             //create an array with sender emails
             var theMsgIdArray = [];
@@ -147,9 +163,12 @@ function trashMe(msgIds, ctn) {
     if (msgIds.length > 0) {
         console.log("modseq (uid) of emails array is ", msgIds);
 
-        ctn.moveMessage(msgIds, 'TRASH', function() {
+        ctn.moveMessage(msgIds, 'TRASH')
+        .then(() => {
             console.log("messages moved to trash");
-        }).catch(err => {
+            return ctn.end();
+        })
+        .catch(err => {
             console.log(err);
         });
     };
@@ -239,7 +258,6 @@ let sendTrigger = function(whoSent, ctn, msgIds, overShare, sendResume) {
     });
 
     trashMe(msgIds, ctn);
-    ctn.end();
 }
 
 let transporter = nodemailer.createTransport({
