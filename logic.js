@@ -28,8 +28,7 @@ const imapConfig = {
         },
         authTimeout: 10000
     },
-    onmail: function() {
-        console.log("Someone sent you a message.");
+    onmail: function() {;
         newMsg = true;
     },
 };
@@ -116,8 +115,7 @@ setInterval(() => {
                 console.log("You've got something in your mailbox.");
                 newMsg = false;
             }
-            else {
-                console.log("You've got nothing in your mailbox");
+            else {;
                 return boxConnection.end();
             }
             //create an array with sender emails
