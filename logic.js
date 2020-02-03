@@ -8,7 +8,6 @@ console.log(`
 -----Welcome to  Xio----
 -🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖-
 `);
-//mobile cmt
 let newMsg;
 let blackList = fs.readFileSync('xiodb.json', function (err, data) {
     if (err) throw err;
@@ -32,7 +31,6 @@ const imapConfig = {
         newMsg = true;
     },
 };
-
 let msgMap = function(msgResult) {
     return msgResult.map(function(res) {
         return res.parts.filter(function(part) {
@@ -51,7 +49,7 @@ let xioDictate = function(msgResult, mailSender) {
         console.log("Beep boop hi! was found at ", cutAt);
         //use index to slice email
         let truncatedMsg = b.slice(0, cutAt);
-	    console.log("the body of the truncated msg result is ", truncatedMsg);
+	    
 
         let aboutMe = truncatedMsg.includes("about you") || truncatedMsg.includes("About you") || truncatedMsg.includes("About You") || truncatedMsg.includes("about You");
         let shutUpXio = truncatedMsg.includes("THANKS XIO") || truncatedMsg.includes("thanks xio")|| truncatedMsg.includes("Thanks xio") || truncatedMsg.includes("Thanks Xio") || truncatedMsg.includes("thanks Xio");
@@ -154,7 +152,7 @@ setInterval(() => {
             ;
         })
     })
-}, 5000)
+}, 15000)
 
 //move the messages to the trash if there are any IDs in the msgIdArray
 function trashMe(msgIds, ctn) {
