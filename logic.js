@@ -80,7 +80,7 @@ async function mailCtn() {
     catch(err) {
         if (err) throw err;
     }
-}
+};
 
 //WIP function
 function timePlot() {
@@ -88,7 +88,7 @@ function timePlot() {
     let today = date.toDateString();
     console.log("today is ", today); 
     console.log("today's day number is ", today.slice(8, 10));
-}
+};
 
 function logSenderInfo(senders) {
 
@@ -178,7 +178,7 @@ setInterval(() => {
             
         })
     })
-}, 15000)
+}, 15000);
 
 //move the messages to the trash if there are any IDs in the msgIdArray
 function trashMe(msgIds, ctn) {
