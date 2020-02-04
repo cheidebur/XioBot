@@ -18,7 +18,7 @@ Right now Xio listens for and responds differently to two commands:
 2. thanks Xio
 
 
-<sub>other cap combos ie. RESUME PLEASE and Thanks xio also work</sub>
+<sub>other cap combos ie. "RESUME PLEASE", "Thanks xio", "THANKS XIO" also work</sub>
 
 The email sender can include the term __resume please__ anywhere in their email, and Xio
 will respond with a link to my resume. Theorhetically this could be used for anything, and the commands
