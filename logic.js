@@ -8,6 +8,7 @@ console.log(`
 -----Welcome to  Xio----
 -🤖🤖🤖🤖🤖🤖🤖🤖🤖🤖-
 `);
+
 let newMsg;
 let blackList = fs.readFileSync('xiodb.json', function (err, data) {
     if (err) throw err;
@@ -31,6 +32,7 @@ const imapConfig = {
         newMsg = true;
     },
 };
+
 let msgMap = function(msgResult) {
     return msgResult.map(function(res) {
         return res.parts.filter(function(part) {
@@ -80,10 +82,18 @@ async function mailCtn() {
     }
 }
 
-function logSenderInfo(senders) {
-    console.log("Logging sender info.");
+//WIP function
+function timePlot() {
+    let date = new Date();
+    let today = date.toDateString();
+    console.log("today is ", today); 
+    console.log("today's day number is ", today.slice(8, 10));
+}
 
-    //start by pulling results from disk
+function logSenderInfo(senders) {
+
+    console.log("Logging sender info.");
+    //start by pulling results from disk and return it as a string
     let senderData = fs.readFileSync("senderdata.json", (err, data) => {
         if (err) return console.log(err);
         return data.toString();
@@ -95,8 +105,10 @@ function logSenderInfo(senders) {
     });
 
     console.log("resultsSave is ", resultsSave);
+    console.log("resultsSave with .toString is ", resultsSave.toString())
     //the stringify the array (which is still an object)
     let resultsString = JSON.stringify(resultsSave);
+    console.log("resultsSave with JSON.stringify(results) ", resultsString)
 
     //concat the new results with the sender data pulled from disk
     senderData += resultsString;
@@ -162,8 +174,8 @@ setInterval(() => {
                     });
                     boxConnection.end();
                 }
-            }
-            ;
+            };
+            
         })
     })
 }, 15000)
@@ -182,7 +194,7 @@ function trashMe(msgIds, ctn) {
             console.log(err);
         });
     };
-}
+};
 
 //flaggin messages as read before theyre moved
 async function flagAsRead(ctn, ids) {
@@ -268,7 +280,7 @@ let sendTrigger = function(whoSent, ctn, msgIds, overShare, sendResume) {
     });
 
     trashMe(msgIds, ctn);
-}
+};
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
