@@ -10,6 +10,7 @@ console.log(`
 `);
 
 let newMsg;
+
 let blackList = fs.readFileSync('xiodb.json', function (err, data) {
     if (err) throw err;
     return data;
@@ -75,7 +76,7 @@ let xioDictate = function(msgResult, mailSender) {
 
 async function mailCtn() {
     try {
-       return await imaps.connect(imapConfig)
+       return await imaps.connect(imapConfig);
     }
     catch(err) {
         if (err) throw err;
