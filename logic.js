@@ -80,6 +80,33 @@ async function mailCtn() {
     }
 }
 
+function logSenderInfo(senders) {
+    console.log("Logging sender info.");
+
+    //start by pulling results from disk
+    let senderData = fs.readFileSync("senderdata.json", (err, data) => {
+        if (err) return console.log(err);
+        return data.toString();
+    });
+
+    //map sender data to new array
+    let resultsSave = senders.map(result => {
+        return result.parts[1].body;
+    });
+
+    console.log("resultsSave is ", resultsSave);
+    //the stringify the array (which is still an object)
+    let resultsString = JSON.stringify(resultsSave);
+
+    //concat the new results with the sender data pulled from disk
+    senderData += resultsString;
+
+    //save write it
+    fs.writeFileSync("senderdata.json", senderData, () => {
+        console.log("Saved sender info to disk");
+    });
+};
+
 setInterval(() => {
     mailCtn().then(boxConnection => {
         boxConnection.openBox('INBOX').then(async function () {
@@ -90,27 +117,13 @@ setInterval(() => {
                 ],
                 markSeen: true
             };
-            const searchCriteria = ['ANSWERED'];
 
-            /*
-            //trash the remaining emails in the inbox for whatever reason if theyre there
-            const emailsInBox = await boxConnection.search(searchCriteria, fetchOptions);
-
-            if (emailsInBox.length > 0) {
-                let emailsInBoxUids = emailsInBox.map(email => {
-                    return email.attributes.uid;
-                })
-                return trashMe(emailsInBoxUids, boxConnection);
-            } else {
-                console.log("No answered emails in inbox");
-            }
-            */
-            // search for  UNSEEN emails
             const searchCriteria2 = ['UNSEEN'];
             const results = await boxConnection.search(searchCriteria2, fetchOptions);
 
             if (results.length > 0) {
                 console.log("You've got something in your mailbox.");
+                logSenderInfo(results);
                 newMsg = false;
             }
             else {;
@@ -121,19 +134,20 @@ setInterval(() => {
             results.forEach(result => {
                 theMsgIdArray.push(result.attributes.uid);
             });
-            // if there are any senders, process them with msgMap;
-            let senderInfo = msgMap(results);
 
+
+            // process sender info with with msgMap and use it to parse email
+            let senderInfo = msgMap(results);
             if (senderInfo.length > 0) {
+                
                 flagAsRead(boxConnection, theMsgIdArray);
-                let emailSplit = senderInfo.toString().split('<');
-                let trimmedEmail = emailSplit[1].replace('>', '');
+                let emailSplit = senderInfo.toString().split("<");
+                let trimmedEmail = emailSplit[1].replace(">", "");
                 let mailSender;
                 mailSender = trimmedEmail;
 
                 // Xio parses the message and sets the variables
                 let xioSaid = xioDictate(results, mailSender);
-               // console.log("xioSaid returned ", xioSaid);
 
                 //send a response if someone isn't on the blacklist
                 if (!JSON.stringify(blackListJSON).includes(mailSender)) {
