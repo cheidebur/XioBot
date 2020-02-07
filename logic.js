@@ -238,7 +238,7 @@ let sendTrigger = function(whoSent, ctn, msgIds, overShare, sendResume) {
         email is automated and interactive. Type "resume please" anywhere in your next email to receive a copy of my resume.
         </p>
         <p style="font-family:'Monospace';color:#f7c45f;font-size:1.4em;">Type "thanks Xio" anywhere in your reply
-        to send me a notification about your last email and to silence Xio.
+        to send me an extra notification about your last email and to silence Xio.
         </p>
 									  
         <p style="display:inline;background-color:#F26A4B;padding:.3em;border-radius:10px;">
