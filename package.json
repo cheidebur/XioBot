@@ -17,7 +17,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "imap-simple": "^4.3.0",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^6.4.16",
     "xoauth2": "^1.2.0"
   }
 }
